@@ -28,6 +28,9 @@ namespace JavaScriptsAsync
 
             bundles.Add(new StyleBundle("~/bundles/JavaScriptsAsync")
                 .Include("~/Scripts/JavaScriptsAsync.js"));
+
+            bundles.Add(new StyleBundle("~/bundles/AlarmPromise")
+                .Include("~/Scripts/AlarmPromise.js"));
         }
     }
 }

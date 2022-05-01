@@ -139,6 +139,7 @@
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="products.json" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
+    <Content Include="Scripts\AlarmPromise.js" />
     <Content Include="Scripts\JavaScriptsAsync.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -162,7 +163,7 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
+    <Content Include="Views\Home\Alarm.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>

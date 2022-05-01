@@ -20,7 +20,7 @@ namespace JavaScriptsAsync.Controllers
             return View();
         }
 
-        public ActionResult Contact()
+        public ActionResult Alarm()
         {
             ViewBag.Message = "Your contact page.";
 
