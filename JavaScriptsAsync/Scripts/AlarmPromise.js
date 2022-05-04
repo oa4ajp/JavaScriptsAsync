@@ -3,24 +3,29 @@ var delayMs = 3000;
 
 $(document).ready(function ($) {
     const output = document.querySelector('#output');
+    const outputAsyncAwait = document.querySelector('#outputAsyncAwait');
 
-    /*
     $("#set-alarm").click(function () {
+        output.textContent = '';
         console.log('Start');
         getAlarm(name, delayMs)
-            .then(message => output.textContent = message)
+            .then(message => {
+                output.textContent = message;
+                console.log(message);
+            })
             .catch(error => output.textContent = error); //It doesn't blocks the flow.
         console.log('End');
     });
-    */
 
-    $("#set-alarm").click(async function () {
+    $("#set-alarm-async-await").click(async function () {
+        outputAsyncAwait.textContent = '';
         console.log('Start');
         try {
             var message = await getAlarm(name, delayMs); //It blocks flow until promise is executed
-            output.textContent = message;
+            console.log(message);
+            outputAsyncAwait.textContent = message;
         } catch (error) {
-            output.textContent = error;
+            outputAsyncAwait.textContent = error;
         }
 
         console.log('End');

@@ -1,72 +1,55 @@
 ﻿var url = 'https://mdn.github.io/learning-area/javascript/apis/fetching-data/can-store/products.json';
 
 $(document).ready(function ($) {
+    
     $("#btnSubmit").click(function () {
         console.log('run');
-        AsyncAwait02();
+        promiseWithThen();
     });
+    
+
+    $("#btnSubmitAsyncAwait").click(async function () {
+        console.log('run async await');
+        await promiseAsyncAwait();
+    });
+
 });
 
-function promise01()
-{
-    const fetchPromise = fetch(url);
-
-    console.log(fetchPromise);
-
-    fetchPromise.then(response => {
-        console.log(`Received response: ${response.status}`);
-    });
-
-    console.log("Started request..."); //It is logged before the then callback
-}
-
-function promiseNested() {
-    const fetchPromise = fetch(url);
-
-    console.log(fetchPromise);
-
-    fetchPromise
+function promiseWithThen() {
+    getProducts()
         .then(response => {
-            return response.json(); //. json() returns a promise
+            console.log(`Received response: ${response[0].name}`);
         })
-        .then(json => {
-            console.log(json[0].name);
+        .catch(error => {
+            console.log(error);
         });
 
-
     console.log("Started request..."); //It is logged before the then callback
 }
 
-function AsyncAwait01() {
-    const json = fetchProducts();
-    console.log(json);   // json is a Promise object, so this will not work
-}
 
-function AsyncAwait02() {
-    const jsonPromise = fetchProducts();
-    jsonPromise.then(res => {
-        console.log(res[0].name);
-    });
-
-}
-
-async function AsyncAwait03() {
-    const json = await fetchProducts();
-    console.log(json);   
-}
-
-
-async function fetchProducts() {
+async function promiseAsyncAwait() {
     try {
-        const response = await fetch('https://mdn.github.io/learning-area/javascript/apis/fetching-data/can-store/products.json');
-        if (!response.ok) {
-            throw new Error(`HTTP error: ${response.status}`);
-        }
-        const json = await response.json();
-        return json;
+        let products = await getProducts();
+        console.log(`Received response: ${products[0].name}`);
+    } catch (error) {
+        console.log(error);
     }
-    catch (error) {
-        console.error(`Could not get products: ${error}`);
-    }
+    console.log("Started request...");
 }
 
+
+function getProducts() {
+    return new Promise((resolve, reject) => {
+        $.ajax({
+            url: url,
+            type: 'GET',
+            success: function(data) {
+                resolve(data);
+            },
+            error: function(error) {
+                reject(error);
+            }
+        });
+    });
+}
