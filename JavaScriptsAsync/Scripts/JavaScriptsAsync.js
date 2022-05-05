@@ -3,14 +3,16 @@
 $(document).ready(function ($) {
     
     $("#btnSubmit").click(function () {
-        console.log('run');
+        console.log('Function Start');
         promiseWithThen();
+        console.log('Function End'); //It is logged before the then callback
     });
     
 
     $("#btnSubmitAsyncAwait").click(async function () {
-        console.log('run async await');
+        console.log('Function Start async await');
         await promiseAsyncAwait();
+        console.log('Function End');
     });
 
 });
@@ -23,10 +25,7 @@ function promiseWithThen() {
         .catch(error => {
             console.log(error);
         });
-
-    console.log("Started request..."); //It is logged before the then callback
 }
-
 
 async function promiseAsyncAwait() {
     try {
@@ -35,9 +34,7 @@ async function promiseAsyncAwait() {
     } catch (error) {
         console.log(error);
     }
-    console.log("Started request...");
 }
-
 
 function getProducts() {
     return new Promise((resolve, reject) => {
