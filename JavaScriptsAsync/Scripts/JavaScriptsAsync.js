@@ -11,7 +11,7 @@ $(document).ready(function ($) {
 
     $("#btnSubmitAsyncAwait").click(async function () {
         console.log('Function Start async await');
-        await promiseAsyncAwait();
+        await promiseAsyncAwait(); //Blocking
         console.log('Function End');
     });
 
